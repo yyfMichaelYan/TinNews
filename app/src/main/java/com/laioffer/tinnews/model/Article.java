@@ -1,28 +1,35 @@
 package com.laioffer.tinnews.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
+@Entity
 public class Article {
-    public Source source;
+
     public String author;
-    public String title;
+    public String content;
     public String description;
+    public String publishedAt;
+    public String title;
+
+    @NonNull
+    @PrimaryKey
     public String url;
     public String urlToImage;
-    public String publishedAt;
-    public String content;
 
     @Override
     public String toString() {
         return "Article{" +
-                "source=" + source +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
+                "author='" + author + '\'' +
+                ", content='" + content + '\'' +
                 ", description='" + description + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", content='" + content + '\'' +
                 '}';
     }
 
@@ -31,18 +38,17 @@ public class Article {
         if (this == o) return true;
         if (!(o instanceof Article)) return false;
         Article article = (Article) o;
-        return Objects.equals(source, article.source) &&
-                Objects.equals(author, article.author) &&
-                Objects.equals(title, article.title) &&
+        return Objects.equals(author, article.author) &&
+                Objects.equals(content, article.content) &&
                 Objects.equals(description, article.description) &&
-                Objects.equals(url, article.url) &&
-                Objects.equals(urlToImage, article.urlToImage) &&
                 Objects.equals(publishedAt, article.publishedAt) &&
-                Objects.equals(content, article.content);
+                Objects.equals(title, article.title) &&
+                url.equals(article.url) &&
+                Objects.equals(urlToImage, article.urlToImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(source, author, title, description, url, urlToImage, publishedAt, content);
+        return Objects.hash(author, content, description, publishedAt, title, url, urlToImage);
     }
 }
